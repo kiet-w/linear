@@ -14,11 +14,17 @@
 
 ## Quy tắc thực hiện (Workflow Rules)
 1. **Branch Naming:** Tên nhánh phải trùng với tên Ticket (VD: `feat/FE-101-core-layout`).
-2. **Linear State - BẮT BUỘC:** 
-   - Nhận ticket ở cột **Planned**, lập tức chuyển sang **In Progress**.
-   - TUYỆT ĐỐI CHỈ CODE những gì có trong plan của ticket đó, không code lan man.
-   - Khi hoàn thành (đã commit và PUSH lên nhánh có tên trùng với tên ticket), chuyển ticket sang **In Review** và **DỪNG LẠI (STOP)**, đợi review code. Không tự ý merge.
-   - Nếu có lỗi, ticket bị kéo sang **Debug**, AI chuyển lại sang **In Progress** để fix. Fix xong lại đẩy qua **In Review** và **STOP**.
+2. **Linear State & Dependencies - BẮT BUỘC:** 
+   - **Pre-check:** Kiểm tra ticket có đang bị "Blocked By" ticket khác không. Nếu có và ticket kia chưa "Done", TUYỆT ĐỐI KHÔNG BẮT ĐẦU.
+   - **Git Isolation:** Khi nhận ticket, việc ĐẦU TIÊN là phải tạo nhánh mới (branch) từ `main`. Tên nhánh trùng tên ticket. Không được code chung hoặc pull code chưa merge của nhánh khác.
+   - **Start:** Tạo nhánh xong, chuyển ticket từ **Planned** sang **In Progress**.
+   - **Execute & Test:** TUYỆT ĐỐI CHỈ CODE những gì có trong plan. Bắt buộc gọi MCP tool `run_local_tests` để kiểm chứng.
+   - **Trạng thái BLOCKED:** Nếu phát hiện Bug chí mạng ngăn cản việc code:
+     + Gọi MCP tool `report_bug_and_decide` (với `is_blocking: true`).
+     + Hệ thống sẽ tạo Bug Ticket và chuyển ticket hiện tại sang **Blocked**. AI DỪNG LẠI (Sleep).
+     + Chỉ làm tiếp khi được đánh thức bằng lệnh `resume_blocked_task` (khi Bug Ticket kia đã DONE).
+   - **Review:** Khi hoàn thành (đã commit và PUSH lên nhánh có tên trùng với tên ticket), chuyển ticket sang **In Review** và **DỪNG LẠI (STOP)**, đợi review code. Không tự ý merge.
+   - **Debug:** Nếu có lỗi lúc review, ticket bị kéo sang **Debug**, AI checkout lại nhánh đó, chuyển lại sang **In Progress** để fix. Fix xong lại push và đẩy qua **In Review** và **STOP**.
 3. **Checklist:** Khi làm xong 1 bước, AI tự động tick `[x]` vào markdown này.
 4. **Commit:** Commit ngay sau mỗi Task hoàn thành. Nhớ thêm prefix `rtk` cho mọi câu lệnh shell (Antigravity Rule).
 5. **Push:** Chỉ push nhánh khi tất cả các Task trong Ticket đã được tick hoàn thành.

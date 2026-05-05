@@ -14,11 +14,7 @@ import { KanbanColumn } from "@/features/kanban-board/ui/kanban-column";
 import { useOptimisticIssueMutation } from "@/features/kanban-board/model/use-optimistic-issue-mutation";
 import { useIssueRealtimeSync } from "../model/use-issue-realtime-sync";
 
-interface IssueBoardProps {
-  projectId?: string;
-}
-
-export function IssueBoard({ projectId }: IssueBoardProps) {
+export function IssueBoard({ projectId }: { projectId?: string }) {
   const { data: issues = [], isLoading } = useIssues(projectId);
   const { mutate: updateStatus } = useOptimisticIssueMutation(projectId);
   useIssueRealtimeSync(projectId);
@@ -28,16 +24,12 @@ export function IssueBoard({ projectId }: IssueBoardProps) {
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
-
     const newStatus = over.id as IssueStatus;
     if (!ISSUE_STATUSES.includes(newStatus)) return;
-
     updateStatus({ issueId: String(active.id), newStatus, projectId });
   }
 
-  if (isLoading) {
-    return <p className="text-sm text-[#6b7280]">Loading...</p>;
-  }
+  if (isLoading) return <p className="text-sm text-slate-500">Loading...</p>;
 
   return (
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
