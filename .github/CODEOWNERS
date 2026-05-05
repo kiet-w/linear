@@ -6,3 +6,4 @@
 /apps/web/src/entities/ @admintp
 /apps/web/src/widgets/ @admintp
 /apps/web/src/shared/ @admintp
+/apps/web/app/ @admintp
