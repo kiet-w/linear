@@ -43,5 +43,5 @@ export function useIssueRealtimeSync(projectId?: string) {
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [queryClient, queryKey.join(",")]);
+  }, [queryClient, queryKey]);
 }
