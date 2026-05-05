@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 
 import { Sidebar } from "@/widgets/sidebar";
 import { TopNav } from "@/widgets/top-nav";
+import { ReactQueryProvider } from "@/shared/api/query-provider";
 
 import "./globals.css";
 
@@ -36,7 +37,9 @@ export default function RootLayout({
           <Sidebar />
           <div className="ml-64 flex min-h-screen flex-1 flex-col">
             <TopNav />
-            <main className="flex-1 overflow-y-auto px-6 py-8">{children}</main>
+            <ReactQueryProvider>
+              <main className="flex-1 overflow-y-auto px-6 py-8">{children}</main>
+            </ReactQueryProvider>
           </div>
         </div>
       </body>
