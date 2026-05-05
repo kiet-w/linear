@@ -13,27 +13,32 @@ interface LockFilesArgs {
 }
 
 export async function lockFiles(args: LockFilesArgs): Promise<{ success: boolean; message: string }> {
+  if (!args.filePaths || args.filePaths.length === 0) {
+      return { success: false, message: "No files provided to lock." };
+  }
+
   const duration = args.durationMinutes || 120; // Default lock for 2 hours
   const expiresAt = new Date(Date.now() + duration * 60000).toISOString();
 
-  for (const filePath of args.filePaths) {
-      // 1. Check if an active lock exists and hasn't expired
-      const { data: existingLock, error: fetchError } = await supabase
-          .from('active_locks')
-          .select('*')
-          .eq('file_path', filePath)
-          .single();
+  // 1. Check if an active lock exists and hasn't expired (Batched Query)
+  const { data: existingLocks, error: fetchError } = await supabase
+      .from('active_locks')
+      .select('*')
+      .in('file_path', args.filePaths);
 
-      if (fetchError && fetchError.code !== 'PGRST116') { // PGRST116 is 'not found'
-          throw new Error(`Database error checking lock for ${filePath}: ${fetchError.message}`);
-      }
+  if (fetchError) {
+      throw new Error(`Database error checking locks: ${fetchError.message}`);
+  }
 
-      if (existingLock && new Date(existingLock.expires_at) > new Date()) {
-          if (existingLock.ticket_id !== args.ticketId) {
-             return {
-                 success: false,
-                 message: `File ${filePath} is already locked by ticket ${existingLock.ticket_id} (Agent: ${existingLock.locked_by}). Please wait or move your ticket to BLOCKED.`
-             };
+  if (existingLocks) {
+      for (const lock of existingLocks) {
+          if (new Date(lock.expires_at) > new Date()) {
+              if (lock.ticket_id !== args.ticketId) {
+                  return {
+                      success: false,
+                      message: `File ${lock.file_path} is already locked by ticket ${lock.ticket_id} (Agent: ${lock.locked_by}). Please wait or move your ticket to BLOCKED.`
+                  };
+              }
           }
       }
   }
