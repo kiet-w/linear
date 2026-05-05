@@ -5,7 +5,7 @@ import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
 
 import type { Issue, IssueStatus } from "@/entities/issue";
 import { STATUS_LABELS } from "@/entities/issue";
-import { KanbanCard } from "./kanban-card";
+import { KanbanItem } from "./kanban-item";
 
 interface KanbanColumnProps {
   status: IssueStatus;
@@ -23,7 +23,6 @@ export function KanbanColumn({ status, issues }: KanbanColumnProps) {
         </span>
         <span className="text-xs text-[#6b7280]">{issues.length}</span>
       </div>
-
       <div
         ref={setNodeRef}
         className={[
@@ -33,7 +32,7 @@ export function KanbanColumn({ status, issues }: KanbanColumnProps) {
       >
         <SortableContext items={issues.map((i) => i.id)} strategy={verticalListSortingStrategy}>
           {issues.map((issue) => (
-            <KanbanCard key={issue.id} issue={issue} />
+            <KanbanItem key={issue.id} issue={issue} />
           ))}
         </SortableContext>
       </div>
