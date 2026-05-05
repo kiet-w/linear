@@ -81,14 +81,16 @@ clarifying questions come *before* implementation — not after mistakes.
 ## Linear Issue Workflow & State Machine (STRICT)
 To prevent Cascading Failures and Circular Dependencies, all AI agents MUST adhere to this strict workflow:
 
-1. **Pre-Check Dependencies:** Check ticket relations (e.g., `blockedBy`). If blocked by an unresolved ticket, DO NOT START. Leave in "Planned" or move to "Blocked".
-2. **Git Isolation (Branching):** EVERY ticket MUST have its own isolated branch created from `main` (e.g., `git checkout -b feat/TICKET-ID`). When activating a ticket, your FIRST action is creating this branch. Do not pull unmerged code from other feature branches.
-3. **Move to In Progress:** After creating the branch, immediately move the ticket to "In Progress".
-4. **Execute & Local Testing:** Execute ONLY the planned tasks. You MUST use the `run_local_tests` MCP tool to verify your code before considering it complete.
-5. **Handling Critical Bugs (BLOCKED):** If you hit a blocking bug:
+1. **Pre-flight Situational Awareness:** Before writing ANY code, run `gh pr list --state open` (or equivalent). Review the titles and changed files. If another PR is modifying the files you intend to change, PAUSE and report the conflict risk.
+2. **Acquire File Locks:** Before modifying files, you MUST use the `lock_files` MCP tool to lock the specific file paths you plan to edit. If a file is locked by another ticket, you MUST move your current task to "Blocked" and wait.
+3. **Pre-Check Dependencies:** Check ticket relations (e.g., `blockedBy`). If blocked by an unresolved ticket, DO NOT START. Leave in "Planned" or move to "Blocked".
+4. **Git Isolation (Branching):** EVERY ticket MUST have its own isolated branch created from `main` (e.g., `git checkout -b feat/TICKET-ID`). When activating a ticket, your FIRST action is creating this branch. Do not pull unmerged code from other feature branches.
+5. **Move to In Progress:** After creating the branch, immediately move the ticket to "In Progress".
+6. **Execute & Local Testing:** Execute ONLY the planned tasks. You MUST use the `run_local_tests` MCP tool to verify your code before considering it complete.
+7. **Handling Critical Bugs (BLOCKED):** If you hit a blocking bug:
    - Call the `report_bug_and_decide` MCP tool (with `is_blocking: true`).
    - The system will create a bug ticket, link it, and move your current task to "Blocked". **STOP** execution (sleep/wait).
    - Only resume when awakened (via the `resume_blocked_task` tool or human intervention) once the bug is "Done".
-6. **Move to In Review & STOP:** Once verified, committed, and PUSHED to your ticket's branch, move the ticket to "In Review". **STOP execution here.** Do not merge.
-7. **Handling Debug/Rejections:** If moved to "Debug", switch to its branch, move to "In Progress", fix issues, push, and return to "In Review".
-8. **Cross-Agent Sync:** Ensure all statuses are immediately updated on Linear so other agents know the real-time state.
+8. **Move to In Review & STOP:** Once verified, committed, and PUSHED to your ticket's branch, move the ticket to "In Review". **STOP execution here.** Do not merge.
+9. **Handling Debug/Rejections:** If moved to "Debug", switch to its branch, move to "In Progress", fix issues, push, and return to "In Review".
+10. **Cross-Agent Sync:** Ensure all statuses are immediately updated on Linear so other agents know the real-time state.

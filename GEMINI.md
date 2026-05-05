@@ -41,6 +41,8 @@ Significant bugs and their resolutions must be documented under `docs/bugs/` (if
 ### 4. Linear Issue Workflow & State Machine (STRICT)
 To prevent Cascading Failures and Circular Dependencies, all AI agents MUST adhere to this strict workflow:
 
+- **Pre-flight Situational Awareness:** Before writing ANY code, run `gh pr list --state open` (or equivalent). Review the titles and changed files. If another PR is modifying the files you intend to change, PAUSE and report the conflict risk.
+- **Acquire File Locks:** Before modifying files, you MUST use the `lock_files` MCP tool to lock the specific file paths you plan to edit. If a file is locked by another ticket, you MUST move your current task to "Blocked" and wait.
 - **Pre-Check Dependencies:** Check ticket relations (e.g., `blockedBy`). If blocked by an unresolved ticket, DO NOT START. Leave in "Planned" or move to "Blocked".
 - **Git Isolation (Branching):** EVERY ticket MUST have its own isolated branch created from `main` (e.g., `git checkout -b feat/TICKET-ID`). When activating a ticket, your FIRST action is creating this branch. Do not pull unmerged code from other feature branches.
 - **Move to In Progress:** After creating the branch, immediately move the ticket to "In Progress".
