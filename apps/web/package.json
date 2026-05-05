@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint .",
+    "check": "tsc --noEmit && npm run lint",
+    "check:all": "npm run check && npm run build",
+    "debug:build": "next build 2>&1 | Out-File -FilePath build-errors.txt -Encoding utf8"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
