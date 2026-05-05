@@ -38,22 +38,37 @@ Significant bugs and their resolutions must be documented under `docs/bugs/` (if
 - **Solution**: Step-by-step fix.
 - **Date**: Resolution date.
 
-### 4. Linear Issue Workflow & State Machine (STRICT)
-To prevent Cascading Failures and Circular Dependencies, all AI agents MUST adhere to this strict workflow:
+### 4. Linear Issue Workflow & State Machine (STRICT)  
+To prevent Cascading Failures and Circular Dependencies, all AI agents MUST adhere to this strict workflow:  
 
 - **Pre-flight Situational Awareness:** Before writing ANY code, run `gh pr list --state open` (or equivalent). Review the titles and changed files. If another PR is modifying the files you intend to change, PAUSE and report the conflict risk.
 - **Acquire File Locks:** Before modifying files, you MUST use the `lock_files` MCP tool to lock the specific file paths you plan to edit. If a file is locked by another ticket, you MUST move your current task to "Blocked" and wait.
 - **Pre-Check Dependencies:** Check ticket relations (e.g., `blockedBy`). If blocked by an unresolved ticket, DO NOT START. Leave in "Planned" or move to "Blocked".
-- **Git Isolation (Branching):** EVERY ticket MUST have its own isolated branch created from `main` (e.g., `git checkout -b feat/TICKET-ID`). When activating a ticket, your FIRST action is creating this branch. Do not pull unmerged code from other feature branches.
-- **Move to In Progress:** After creating the branch, immediately move the ticket to "In Progress".
+- **Task Activation Is Mandatory:** Before doing anything else, pick exactly ONE task, move it to the state you are about to work on (normally `In Progress`), and immediately switch to that task's branch (`feat/TICKET-ID`). You MUST NOT write code, run implementation commands, or edit files before this activation is complete.
+- **Git Isolation (Branching):** EVERY ticket MUST use its own isolated branch (`feat/TICKET-ID`) created from `main`. Do not pull unmerged code from other feature branches.
+- **Acknowledge Assignment:** IMMEDIATELY after moving the ticket to "In Progress", the AI Agent MUST add a comment to the Linear issue explicitly stating which agent is working on it (e.g., "Gemini CLI has started working on this task"). This prevents duplicate work and informs the team.
 - **Execute & Local Testing:** Execute ONLY the planned tasks. You MUST use the `run_local_tests` MCP tool to verify your code before considering it complete.
 - **Handling Critical Bugs (BLOCKED):** If you hit a blocking bug:
   - Call the `report_bug_and_decide` MCP tool (with `is_blocking: true`).
   - The system will create a bug ticket, link it, and move your current task to "Blocked". **STOP** execution (sleep/wait).
   - Only resume when awakened (via the `resume_blocked_task` tool or human intervention) once the bug is "Done".
-- **Move to In Review & STOP:** Once verified, committed, and PUSHED to your ticket's branch, move the ticket to "In Review". **STOP execution here.** Do not merge.
-- **Handling Debug/Rejections:** If moved to "Debug", switch to its branch, move to "In Progress", fix issues, push, and return to "In Review".
+- **Move to In Review:** Once your local execution is complete and basic tests pass, move the ticket to "In Review".
+- **Final Verification Guard (Gemini CLI / Cursor AI):** In the "In Review" state, the designated Debugger (Gemini CLI or Cursor AI) MUST perform a mandatory audit (`npm run check:all`).
+    - **Bug/Syntax Review:** The Debugger must first fix all functional bugs (TSC/Build errors). Once bug-free, it must review code for architectural compliance with `api-standards.md`.
+    - **If BUG/FAIL:** The Debugger MUST move the ticket to "Debug", switch to the issue's branch, and fix the issues.
+    - **If PASS:** Only after passing the audit, the code MUST be pushed to GitHub on the issue's specific feature branch (`feat/TICKET-ID`).
 - **Cross-Agent Sync:** Ensure all statuses are immediately updated on Linear so other agents know the real-time state.
+
+### 5. Comprehensive Debugging & Verification
+Gemini CLI is now the primary Debugging AI for this project (replacing/supplementing Cursor). It follows the same strict verification pipeline:
+
+- **Verification Scripts (in `apps/web`):**
+    - `npm run check`: Runs TypeScript type-check and ESLint.
+    - `npm run check:all`: Runs `check` plus a full `next build`.
+    - `npm run debug:build`: Captures full build output to `build-errors.txt`.
+- **Mandate:** Gemini CLI will NOT consider any fix "Done" until `npm run check:all` passes.
+- **Pushing Policy:** Gemini CLI only pushes to GitHub AFTER successful verification on the ticket's branch.
+
 
 ## Interaction Protocol
 - **Caution over Speed**: Bias toward thinking and clarifying rather than rapid, potentially incorrect implementation.

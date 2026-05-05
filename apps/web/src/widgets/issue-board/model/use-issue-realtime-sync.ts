@@ -7,9 +7,9 @@ import type { Issue } from "@/entities/issue";
 
 export function useIssueRealtimeSync(projectId?: string) {
   const queryClient = useQueryClient();
-  const queryKey = projectId ? issueKeys.byProject(projectId) : issueKeys.all;
 
   useEffect(() => {
+    const queryKey = projectId ? issueKeys.byProject(projectId) : issueKeys.all;
     const channel = supabase
       .channel("public:issues")
       .on(
@@ -43,5 +43,5 @@ export function useIssueRealtimeSync(projectId?: string) {
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [queryClient, queryKey.join(",")]);
+  }, [projectId, queryClient]);
 }
