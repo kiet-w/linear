@@ -1,0 +1,8 @@
+# Global owner (fallback)
+* @admintp
+
+# Enforce FSD ownership
+/apps/web/src/features/ @admintp
+/apps/web/src/entities/ @admintp
+/apps/web/src/widgets/ @admintp
+/apps/web/src/shared/ @admintp
