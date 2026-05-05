@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevOS - Task Management Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#e4e1eb",
+                        "inverse-primary": "#4854bb",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "background": "#121319",
+                        "surface-bright": "#393840",
+                        "surface-dim": "#121319",
+                        "inverse-surface": "#e4e1eb",
+                        "on-primary-container": "#fdfaff",
+                        "surface": "#121319",
+                        "surface-container-low": "#1b1b22",
+                        "surface-container-highest": "#34343b",
+                        "on-error": "#690005",
+                        "primary-fixed": "#dfe0ff",
+                        "on-tertiary-container": "#fffaf8",
+                        "primary-container": "#5e6ad2",
+                        "secondary-container": "#454747",
+                        "error-container": "#93000a",
+                        "on-surface-variant": "#c6c5d5",
+                        "surface-variant": "#34343b",
+                        "on-secondary-container": "#b4b5b5",
+                        "tertiary-fixed-dim": "#ffb867",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-container": "#a56500",
+                        "surface-container-lowest": "#0d0e14",
+                        "inverse-on-surface": "#303037",
+                        "on-tertiary-fixed": "#2b1700",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#454652",
+                        "secondary-fixed": "#e2e2e2",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-tertiary": "#482900",
+                        "on-primary-fixed": "#000965",
+                        "tertiary": "#ffb867",
+                        "secondary": "#c6c6c7",
+                        "on-primary-fixed-variant": "#2e3aa2",
+                        "surface-tint": "#bdc2ff",
+                        "surface-container-high": "#292930",
+                        "on-secondary-fixed-variant": "#454747",
+                        "primary": "#bdc2ff",
+                        "outline": "#908f9e",
+                        "on-background": "#e4e1eb",
+                        "tertiary-fixed": "#ffddbb",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "surface-container": "#1f1f26",
+                        "on-secondary": "#2f3131",
+                        "on-primary": "#121f8b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sidebar-width": "240px",
+                        "container-margin": "24px",
+                        "gutter": "12px",
+                        "unit": "4px",
+                        "element-gap": "8px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "display-sm": ["Inter"],
+                        "mono-sm": ["Space Grotesk"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "display-sm": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "mono-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="bg-[#08090A] text-on-surface font-body-sm text-body-sm antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-screen w-64 border-r border-[#212226] bg-[#111214] flex flex-col py-4 z-50">
+<!-- Header -->
+<div class="px-4 mb-6 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high border border-outline-variant flex items-center justify-center shrink-0">
+<img alt="User Workspace Profile" class="w-full h-full object-cover rounded-lg" data-alt="A stylized, minimalist avatar icon for a developer workspace. The image should feature a subtle gradient of deep violet and slate grey, conveying a premium, technical aesthetic. It should be abstract, perhaps utilizing geometric shapes or a subtle monogram, suitable for a dark mode interface." src="https://lh3.googleusercontent.com/aida/ADBb0uhOxRsd7s51jIPIQNswERwKw7YcO-BPGaVKZL_3S3qSHhL6Rcs1d4Ic89dvbzEgJa_fbNQctaRasu41jz9JG1OVwBG3_1ZPE0CUlRsr7Z5k-N3gass4G1Cs4POFjed3TAelpLsrUsodPqQ45U0BLd4Cl_TkjrNO3v-KpO8VQgrvu4Bc0VDzgMePxU8G37_kAJh0OXE6nEumIiThVFLZ03lz55gOFfuivNvMehsaXolrHuhhCepm8HJdLT2X1ysS7A3Sm5M7wf4bxg"/>
+</div>
+<div class="flex flex-col">
+<span class="text-lg font-bold text-slate-100 leading-tight">DevOS</span>
+<span class="text-[11px] text-slate-400 font-medium">Engineering Workspace</span>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-4 mb-6">
+<button class="w-full bg-primary-container text-on-primary-container hover:bg-inverse-primary transition-colors duration-150 rounded flex items-center justify-center gap-2 py-2 font-label-md text-label-md cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                New Issue
+            </button>
+</div>
+<!-- Tabs -->
+<div class="flex-1 overflow-y-auto no-scrollbar px-2 flex flex-col gap-1">
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 flex items-center gap-3 px-3 py-1.5 rounded cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[18px]">inbox</span>
+<span class="font-label-md text-label-md">Inbox</span>
+</a>
+<a class="bg-slate-800/50 text-slate-50 border-l-2 border-[#5E6AD2] flex items-center gap-3 px-3 py-1.5 rounded cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[18px]">task_alt</span>
+<span class="font-label-md text-label-md">My Tasks</span>
+</a>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 flex items-center gap-3 px-3 py-1.5 rounded cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[18px]">account_tree</span>
+<span class="font-label-md text-label-md">Projects</span>
+</a>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 flex items-center gap-3 px-3 py-1.5 rounded cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span class="font-label-md text-label-md">Views</span>
+</a>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 flex items-center gap-3 px-3 py-1.5 rounded cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+<span class="font-label-md text-label-md">Git Logs</span>
+</a>
+<!-- Specialized Git Activity Section -->
+<div class="mt-6 mb-2 px-3">
+<h3 class="text-[10px] uppercase tracking-wider font-semibold text-slate-500 mb-2">Git Activity</h3>
+<div class="flex flex-col gap-2">
+<button class="w-full bg-surface-container-high border border-outline-variant text-slate-200 hover:bg-surface-container-highest transition-colors duration-150 rounded flex items-center justify-center gap-2 py-1.5 font-label-md text-label-md cursor-pointer">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+                        Quick Push
+                    </button>
+<div class="flex flex-col gap-1.5 mt-2">
+<div class="flex items-start gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1.5 shrink-0"></div>
+<div class="flex flex-col">
+<span class="font-mono-sm text-mono-sm text-slate-300">fix: nav alignment</span>
+<span class="text-[10px] text-slate-500">2m ago • main</span>
+</div>
+</div>
+<div class="flex items-start gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-surface-variant mt-1.5 shrink-0 border border-outline-variant"></div>
+<div class="flex flex-col">
+<span class="font-mono-sm text-mono-sm text-slate-400">feat: add board view</span>
+<span class="text-[10px] text-slate-500">1h ago • feature/board</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="px-2 mt-auto flex flex-col gap-1 border-t border-[#212226] pt-4">
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 flex items-center gap-3 px-3 py-1.5 rounded cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 flex items-center gap-3 px-3 py-1.5 rounded cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[18px]">help_outline</span>
+<span class="font-label-md text-label-md">Help</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 ml-64 flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] border-b border-[#212226] z-40 bg-[#08090A]/80 backdrop-blur-md flex justify-between items-center px-6 py-2">
+<!-- Left: Search & Nav -->
+<div class="flex items-center gap-6">
+<!-- MCP AI Status -->
+<div class="flex items-center gap-2 px-2 py-1 rounded bg-surface-container-high border border-outline-variant">
+<div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+<span class="font-mono-sm text-[10px] text-emerald-400">MCP Connected</span>
+</div>
+<div class="flex gap-6 items-end h-8">
+<a class="text-[#5E6AD2] border-b border-[#5E6AD2] pb-2 font-inter text-xs font-medium cursor-pointer scale-95 active:scale-90 transition-all" href="#">Board</a>
+<a class="text-slate-500 hover:text-slate-200 hover:text-slate-300 pb-2 font-inter text-xs font-medium cursor-pointer scale-95 active:scale-90 transition-all" href="#">List</a>
+<a class="text-slate-500 hover:text-slate-200 hover:text-slate-300 pb-2 font-inter text-xs font-medium cursor-pointer scale-95 active:scale-90 transition-all" href="#">Timeline</a>
+</div>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center gap-4">
+<button class="bg-primary-container text-on-primary-container hover:bg-inverse-primary transition-colors px-3 py-1.5 rounded font-label-md text-label-md cursor-pointer scale-95 active:scale-90">
+                    Deploy
+                </button>
+<div class="flex items-center gap-3 text-slate-400">
+<button class="hover:text-slate-200 transition-all scale-95 active:scale-90">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</button>
+<button class="hover:text-slate-200 transition-all scale-95 active:scale-90 relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-0 right-0 w-1.5 h-1.5 bg-error rounded-full"></span>
+</button>
+</div>
+</div>
+</header>
+<!-- Canvas (Kanban Board) -->
+<main class="flex-1 mt-[53px] overflow-x-auto overflow-y-hidden p-6">
+<div class="flex gap-6 h-full items-start min-w-max">
+<!-- Column: Backlog -->
+<div class="w-80 flex flex-col h-full">
+<div class="flex items-center justify-between mb-3 px-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-slate-500">inventory_2</span>
+<h2 class="font-label-md text-label-md text-slate-300">Backlog</h2>
+<span class="text-[10px] text-slate-500 bg-surface-container-highest px-1.5 rounded">3</span>
+</div>
+<button class="text-slate-500 hover:text-slate-300"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+<div class="flex flex-col gap-2 overflow-y-auto no-scrollbar pb-4">
+<!-- Card -->
+<div class="bg-[#111214] border border-[#212226] rounded-lg p-3 hover:border-outline-variant transition-colors group cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono-sm text-[10px] text-slate-500 group-hover:text-primary-container transition-colors">QWE-12</span>
+<img alt="Assignee" class="w-4 h-4 rounded-full opacity-50 grayscale" data-alt="A very small, circular avatar image showing a stylized geometric pattern in muted grey tones, representing an unassigned or generic user profile in a technical application." src="https://lh3.googleusercontent.com/aida/ADBb0uhOxRsd7s51jIPIQNswERwKw7YcO-BPGaVKZL_3S3qSHhL6Rcs1d4Ic89dvbzEgJa_fbNQctaRasu41jz9JG1OVwBG3_1ZPE0CUlRsr7Z5k-N3gass4G1Cs4POFjed3TAelpLsrUsodPqQ45U0BLd4Cl_TkjrNO3v-KpO8VQgrvu4Bc0VDzgMePxU8G37_kAJh0OXE6nEumIiThVFLZ03lz55gOFfuivNvMehsaXolrHuhhCepm8HJdLT2X1ysS7A3Sm5M7wf4bxg"/>
+</div>
+<p class="font-body-sm text-body-sm text-slate-200 mb-3 leading-snug">Implement global search indexing</p>
+<div class="flex items-center gap-2">
+<span class="px-1.5 py-0.5 rounded text-[10px] bg-surface-container-high text-slate-400 border border-outline-variant">Feature</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Planned -->
+<div class="w-80 flex flex-col h-full">
+<div class="flex items-center justify-between mb-3 px-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-slate-400">calendar_today</span>
+<h2 class="font-label-md text-label-md text-slate-300">Planned</h2>
+<span class="text-[10px] text-slate-500 bg-surface-container-highest px-1.5 rounded">2</span>
+</div>
+<button class="text-slate-500 hover:text-slate-300"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+<div class="flex flex-col gap-2 overflow-y-auto no-scrollbar pb-4">
+<!-- Card -->
+<div class="bg-[#111214] border border-[#212226] rounded-lg p-3 hover:border-outline-variant transition-colors group cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono-sm text-[10px] text-slate-500 group-hover:text-primary-container transition-colors">QWE-9</span>
+</div>
+<p class="font-body-sm text-body-sm text-slate-200 mb-3 leading-snug">Design system token migration</p>
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded text-[10px] bg-tertiary-container/20 text-tertiary-fixed border border-tertiary-container/50">Tech Debt</span>
+<span class="material-symbols-outlined text-[14px] text-slate-500">subject</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: In Progress -->
+<div class="w-80 flex flex-col h-full">
+<div class="flex items-center justify-between mb-3 px-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed-dim">pending</span>
+<h2 class="font-label-md text-label-md text-slate-100">In Progress</h2>
+<span class="text-[10px] text-primary-container bg-primary-container/10 px-1.5 rounded">1</span>
+</div>
+<button class="text-slate-500 hover:text-slate-300"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+<div class="flex flex-col gap-2 overflow-y-auto no-scrollbar pb-4">
+<!-- Active Card -->
+<div class="bg-[#111214] border border-[#5E6AD2]/50 shadow-[0_0_15px_rgba(94,106,210,0.1)] rounded-lg p-3 cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono-sm text-[10px] text-primary-fixed-dim">QWE-5</span>
+<div class="w-4 h-4 rounded-full bg-primary-container flex items-center justify-center text-[8px] font-bold text-white">ME</div>
+</div>
+<p class="font-body-sm text-body-sm text-white mb-3 leading-snug font-medium">Build high-fidelity Kanban UI</p>
+<div class="flex items-center justify-between">
+<div class="flex gap-1">
+<span class="px-1.5 py-0.5 rounded text-[10px] bg-primary-container/20 text-primary-fixed border border-primary-container/30">Frontend</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] bg-surface-container-high border border-outline-variant text-slate-300">P1</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: In Review -->
+<div class="w-80 flex flex-col h-full">
+<div class="flex items-center justify-between mb-3 px-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary">rate_review</span>
+<h2 class="font-label-md text-label-md text-slate-300">In Review</h2>
+<span class="text-[10px] text-slate-500 bg-surface-container-highest px-1.5 rounded">1</span>
+</div>
+<button class="text-slate-500 hover:text-slate-300"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+<div class="flex flex-col gap-2 overflow-y-auto no-scrollbar pb-4">
+<!-- Card -->
+<div class="bg-[#111214] border border-[#212226] rounded-lg p-3 hover:border-outline-variant transition-colors group cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono-sm text-[10px] text-slate-500 group-hover:text-tertiary transition-colors">QWE-4</span>
+<div class="flex -space-x-1">
+<div class="w-4 h-4 rounded-full bg-surface-variant border border-[#111214]"></div>
+<div class="w-4 h-4 rounded-full bg-surface-bright border border-[#111214]"></div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-slate-200 mb-3 leading-snug">Update auth middleware for v2</p>
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded text-[10px] bg-surface-container-high text-slate-400 border border-outline-variant">Backend</span>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[12px]">chat_bubble</span>
+<span class="text-[10px]">3</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Done -->
+<div class="w-80 flex flex-col h-full">
+<div class="flex items-center justify-between mb-3 px-1 opacity-60">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-emerald-500">check_circle</span>
+<h2 class="font-label-md text-label-md text-slate-400">Done</h2>
+<span class="text-[10px] text-slate-500 bg-surface-container-highest px-1.5 rounded">8</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 overflow-y-auto no-scrollbar pb-4 opacity-60">
+<!-- Card -->
+<div class="bg-surface-container-low border border-[#212226] rounded-lg p-3">
+<div class="flex justify-between items-start mb-2">
+<span class="font-mono-sm text-[10px] text-slate-600 line-through">QWE-2</span>
+</div>
+<p class="font-body-sm text-body-sm text-slate-500 mb-3 leading-snug line-through">Setup initial repository</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<div class="fixed bottom-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none">
+<div class="pointer-events-auto flex items-center gap-4 bg-surface-container-high border border-outline-variant rounded-lg p-4 shadow-2xl min-w-[320px] animate-in fade-in slide-in-from-bottom-4 duration-300">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+</div>
+<div class="flex-1">
+<p class="text-on-surface font-medium text-body-md">Update successful</p>
+<p class="text-on-surface-variant text-body-sm">Ticket <span class="font-mono-sm text-primary">QWE-5</span> moved to Review</p>
+</div>
+<button class="flex-shrink-0 text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div></body></html>

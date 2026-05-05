@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Projects - DevOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed-dim": "#bdc2ff",
+                      "surface-dim": "#121319",
+                      "surface": "#121319",
+                      "primary-container": "#5e6ad2",
+                      "error": "#ffb4ab",
+                      "tertiary": "#ffb867",
+                      "on-primary": "#121f8b",
+                      "inverse-primary": "#4854bb",
+                      "surface-tint": "#bdc2ff",
+                      "surface-container-highest": "#34343b",
+                      "surface-container-high": "#292930",
+                      "surface-bright": "#393840",
+                      "background": "#121319",
+                      "tertiary-container": "#a56500",
+                      "on-primary-container": "#fdfaff",
+                      "inverse-surface": "#e4e1eb",
+                      "secondary-container": "#454747",
+                      "outline": "#908f9e",
+                      "primary-fixed": "#dfe0ff",
+                      "on-tertiary-fixed": "#2b1700",
+                      "surface-container-lowest": "#0d0e14",
+                      "on-primary-fixed": "#000965",
+                      "secondary-fixed": "#e2e2e2",
+                      "on-surface": "#e4e1eb",
+                      "inverse-on-surface": "#303037",
+                      "on-secondary-fixed-variant": "#454747",
+                      "error-container": "#93000a",
+                      "surface-container-low": "#1b1b22",
+                      "on-error": "#690005",
+                      "surface-variant": "#34343b",
+                      "primary": "#bdc2ff",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "on-surface-variant": "#c6c5d5",
+                      "on-secondary-container": "#b4b5b5",
+                      "on-secondary": "#2f3131",
+                      "surface-container": "#1f1f26",
+                      "outline-variant": "#454652",
+                      "on-tertiary-container": "#fffaf8",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "tertiary-fixed-dim": "#ffb867",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "on-primary-fixed-variant": "#2e3aa2",
+                      "on-background": "#e4e1eb",
+                      "secondary": "#c6c6c7",
+                      "on-tertiary": "#482900",
+                      "on-error-container": "#ffdad6",
+                      "tertiary-fixed": "#ffddbb"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "12px",
+                      "container-margin": "24px",
+                      "element-gap": "8px",
+                      "sidebar-width": "240px",
+                      "unit": "4px"
+              },
+              "fontFamily": {
+                      "mono-sm": [
+                              "Space Grotesk"
+                      ],
+                      "display-sm": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "mono-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            },
+          }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-screen w-64 border-r border-[#212226] bg-[#111214] flex flex-col h-full py-4 z-50">
+<!-- Header -->
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-primary-container flex items-center justify-center">
+<span class="font-display-sm text-display-sm text-on-primary-container">D</span>
+</div>
+<div>
+<h1 class="text-lg font-bold text-slate-100 font-display-sm leading-tight">DevOS</h1>
+<p class="font-inter text-sm antialiased tracking-tight text-slate-400 font-body-sm text-body-sm">Engineering Workspace</p>
+</div>
+</div>
+<button class="mt-6 w-full bg-primary-container text-on-primary-container hover:bg-inverse-primary transition-colors duration-150 rounded-DEFAULT py-2 px-4 flex items-center justify-center gap-2 font-label-md text-label-md">
+<span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+                New Issue
+            </button>
+</div>
+<!-- Main Tabs -->
+<div class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 cursor-pointer active:opacity-80 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">inbox</span>
+                Inbox
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 cursor-pointer active:opacity-80 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">task_alt</span>
+                My Tasks
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT bg-slate-800/50 text-slate-50 border-l-2 border-[#5E6AD2] hover:bg-[#212226] transition-colors duration-150 cursor-pointer active:opacity-80 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[#5E6AD2]" style="font-size: 18px; font-variation-settings: 'FILL' 1;">account_tree</span>
+                Projects
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 cursor-pointer active:opacity-80 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+                Views
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 cursor-pointer active:opacity-80 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">terminal</span>
+                Git Logs
+            </a>
+</div>
+<!-- Footer Tabs -->
+<div class="px-4 mt-auto space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 cursor-pointer active:opacity-80 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 cursor-pointer active:opacity-80 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">help_outline</span>
+                Help
+            </a>
+</div>
+</nav>
+<!-- Main Workspace -->
+<div class="flex-1 ml-64 h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] border-b border-[#212226] z-40 bg-[#08090A]/80 backdrop-blur-md flex justify-between items-center px-6 py-2">
+<div class="flex items-center gap-6">
+<!-- Search -->
+<div class="relative group hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary-container transition-colors" style="font-size: 16px;">search</span>
+<input class="bg-[#111214] border border-[#212226] rounded-DEFAULT py-1.5 pl-9 pr-4 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all font-body-sm text-body-sm w-64" placeholder="Search projects..." type="text"/>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
+<kbd class="font-mono-sm text-mono-sm text-slate-500 bg-surface-container-high px-1 rounded">⌘</kbd>
+<kbd class="font-mono-sm text-mono-sm text-slate-500 bg-surface-container-high px-1 rounded">K</kbd>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex gap-6 font-inter text-xs font-medium">
+<a class="text-[#5E6AD2] border-b border-[#5E6AD2] pb-2 pt-2 transition-all hover:text-slate-200 scale-95 active:scale-90 font-label-md text-label-md" href="#">Board</a>
+<a class="text-slate-500 hover:text-slate-300 pb-2 pt-2 border-b border-transparent transition-all hover:text-slate-200 scale-95 active:scale-90 font-label-md text-label-md" href="#">List</a>
+<a class="text-slate-500 hover:text-slate-300 pb-2 pt-2 border-b border-transparent transition-all hover:text-slate-200 scale-95 active:scale-90 font-label-md text-label-md" href="#">Timeline</a>
+</nav>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-DEFAULT font-label-md text-label-md hover:bg-inverse-primary transition-colors scale-95 active:scale-90">
+                    Deploy
+                </button>
+<div class="flex items-center gap-2 border-l border-[#212226] pl-4">
+<button class="text-slate-500 hover:text-slate-200 transition-colors scale-95 active:scale-90">
+<span class="material-symbols-outlined" style="font-size: 20px;">hub</span>
+</button>
+<button class="text-slate-500 hover:text-slate-200 transition-colors scale-95 active:scale-90">
+<span class="material-symbols-outlined" style="font-size: 20px;">notifications</span>
+</button>
+<button class="text-slate-500 hover:text-slate-200 transition-colors scale-95 active:scale-90">
+<span class="material-symbols-outlined" style="font-size: 20px;">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Canvas Area -->
+<main class="flex-1 overflow-y-auto mt-14 p-container-margin bg-background">
+<!-- Page Header -->
+<div class="flex items-center justify-between mb-8">
+<div>
+<h2 class="font-display-sm text-display-sm text-on-surface mb-1">Projects</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage and monitor active engineering repositories.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center bg-surface-container-high rounded-DEFAULT p-1 border border-[#212226]">
+<button class="px-3 py-1 rounded bg-surface-bright text-on-surface font-label-md text-label-md shadow-sm">All</button>
+<button class="px-3 py-1 rounded text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">Active</button>
+<button class="px-3 py-1 rounded text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">Archived</button>
+</div>
+</div>
+</div>
+<!-- Bento Grid / Asymmetric Layout for Projects -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-element-gap">
+<!-- Feature Project Card (Spans 2 columns) -->
+<div class="col-span-1 md:col-span-2 bg-[#111214] border border-[#212226] rounded-xl hover:border-primary-container transition-colors group relative overflow-hidden flex flex-col justify-between">
+<!-- Background Accent -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:bg-primary-container/10 transition-colors"></div>
+<div class="p-6 relative z-10 flex flex-col h-full">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-DEFAULT bg-surface-container-high border border-[#212226] flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-fixed-dim" style="font-size: 20px;">api</span>
+</div>
+<div>
+<h3 class="font-body-md text-body-md font-semibold text-on-surface group-hover:text-primary-fixed-dim transition-colors">Core API</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="font-label-md text-label-md text-on-surface-variant">Active</span>
+</div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 line-clamp-2 max-w-lg">
+                            The central nervous system of DevOS. Handles authentication, data routing, and primary business logic for all client applications.
+                        </p>
+<div class="mt-auto grid grid-cols-3 gap-4 border-t border-[#212226] pt-4">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Open Issues</p>
+<p class="font-mono-sm text-mono-sm text-on-surface font-semibold">124</p>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Contributors</p>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest border-2 border-[#111214] flex items-center justify-center text-[10px] text-on-surface font-bold">AJ</div>
+<div class="w-6 h-6 rounded-full bg-primary-container border-2 border-[#111214] flex items-center justify-center text-[10px] text-on-primary-container font-bold">MB</div>
+<div class="w-6 h-6 rounded-full bg-surface-container-highest border-2 border-[#111214] flex items-center justify-center text-[10px] text-on-surface font-bold">+5</div>
+</div>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Last Activity</p>
+<p class="font-mono-sm text-mono-sm text-on-surface">12m ago</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Standard Project Card 1 -->
+<div class="bg-[#111214] border border-[#212226] rounded-xl hover:border-primary-container transition-colors group flex flex-col">
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container-high border border-[#212226] flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" style="font-size: 18px;">web</span>
+</div>
+<div>
+<h3 class="font-body-md text-body-md font-semibold text-on-surface group-hover:text-primary-fixed-dim transition-colors">Frontend UI</h3>
+</div>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="font-label-md text-label-md text-on-surface-variant text-[10px]">Active</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 flex-1">
+                            React-based web application providing the primary interface for users to interact with DevOS.
+                        </p>
+<div class="flex justify-between items-center border-t border-[#212226] pt-3 mt-auto">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-error text-[14px]">bug_report</span>
+<span class="font-mono-sm text-mono-sm text-on-surface">42</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[14px]">commit</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">2h ago</span>
+</div>
+</div>
+<div class="flex -space-x-1.5">
+<div class="w-5 h-5 rounded-full bg-surface-container-highest border border-[#111214] flex items-center justify-center text-[8px] text-on-surface font-bold">SJ</div>
+<div class="w-5 h-5 rounded-full bg-surface-container-highest border border-[#111214] flex items-center justify-center text-[8px] text-on-surface font-bold">KL</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Standard Project Card 2 -->
+<div class="bg-[#111214] border border-[#212226] rounded-xl hover:border-primary-container transition-colors group flex flex-col">
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container-high border border-[#212226] flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-size: 18px;">smartphone</span>
+</div>
+<div>
+<h3 class="font-body-md text-body-md font-semibold text-on-surface group-hover:text-primary-fixed-dim transition-colors">Mobile App</h3>
+</div>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+<span class="font-label-md text-label-md text-on-surface-variant text-[10px]">On Hold</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 flex-1">
+                            React Native application for iOS and Android, focusing on on-the-go notifications and quick approvals.
+                        </p>
+<div class="flex justify-between items-center border-t border-[#212226] pt-3 mt-auto">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[14px]">bug_report</span>
+<span class="font-mono-sm text-mono-sm text-on-surface">18</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[14px]">commit</span>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">5d ago</span>
+</div>
+</div>
+<div class="flex -space-x-1.5">
+<div class="w-5 h-5 rounded-full bg-primary-container border border-[#111214] flex items-center justify-center text-[8px] text-on-primary-container font-bold">DT</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Image Card (Decorative/Visual context) -->
+<div class="col-span-1 md:col-span-2 xl:col-span-1 bg-[#111214] border border-[#212226] rounded-xl overflow-hidden group">
+<div class="h-full relative min-h-[200px]">
+<div class="absolute inset-0 bg-gradient-to-t from-[#111214] via-transparent to-transparent z-10"></div>
+<img alt="A dark, abstract digital visualization of data streams or a network architecture. The scene uses deep blacks, dark greys, and subtle electric violet and neon blue highlights, aligning perfectly with a professional, high-density dark mode developer tool interface. The image should feel sleek, modern, and technical." class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-300" data-alt="A dark, abstract digital visualization of data streams or a network architecture. The scene uses deep blacks, dark greys, and subtle electric violet and neon blue highlights, aligning perfectly with a professional, high-density dark mode developer tool interface. The image should feel sleek, modern, and technical." src="https://lh3.googleusercontent.com/aida/ADBb0uhOxRsd7s51jIPIQNswERwKw7YcO-BPGaVKZL_3S3qSHhL6Rcs1d4Ic89dvbzEgJa_fbNQctaRasu41jz9JG1OVwBG3_1ZPE0CUlRsr7Z5k-N3gass4G1Cs4POFjed3TAelpLsrUsodPqQ45U0BLd4Cl_TkjrNO3v-KpO8VQgrvu4Bc0VDzgMePxU8G37_kAJh0OXE6nEumIiThVFLZ03lz55gOFfuivNvMehsaXolrHuhhCepm8HJdLT2X1ysS7A3Sm5M7wf4bxg"/>
+<div class="absolute bottom-0 left-0 p-5 z-20 w-full">
+<h3 class="font-body-md text-body-md font-semibold text-on-surface mb-1">Infrastructure Overview</h3>
+<p class="font-label-md text-label-md text-on-surface-variant flex items-center justify-between w-full">
+<span>Global deployment health</span>
+<span class="material-symbols-outlined text-primary-fixed-dim" style="font-size: 16px;">arrow_forward</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

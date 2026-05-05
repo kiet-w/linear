@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevOS - Git Logs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-lowest": "#0d0e14",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "inverse-surface": "#e4e1eb",
+                      "primary-fixed-dim": "#bdc2ff",
+                      "on-secondary-container": "#b4b5b5",
+                      "on-primary-fixed-variant": "#2e3aa2",
+                      "on-error-container": "#ffdad6",
+                      "on-secondary": "#2f3131",
+                      "tertiary-container": "#a56500",
+                      "surface-variant": "#34343b",
+                      "tertiary-fixed-dim": "#ffb867",
+                      "error": "#ffb4ab",
+                      "on-primary-fixed": "#000965",
+                      "surface-container": "#1f1f26",
+                      "primary": "#bdc2ff",
+                      "on-primary-container": "#fdfaff",
+                      "surface-container-highest": "#34343b",
+                      "on-tertiary-container": "#fffaf8",
+                      "error-container": "#93000a",
+                      "surface-container-high": "#292930",
+                      "secondary-container": "#454747",
+                      "primary-fixed": "#dfe0ff",
+                      "on-tertiary-fixed": "#2b1700",
+                      "surface-dim": "#121319",
+                      "on-surface": "#e4e1eb",
+                      "surface-bright": "#393840",
+                      "surface": "#121319",
+                      "on-background": "#e4e1eb",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "on-primary": "#121f8b",
+                      "on-error": "#690005",
+                      "background": "#121319",
+                      "outline-variant": "#454652",
+                      "outline": "#908f9e",
+                      "inverse-primary": "#4854bb",
+                      "surface-container-low": "#1b1b22",
+                      "on-secondary-fixed-variant": "#454747",
+                      "tertiary": "#ffb867",
+                      "secondary-fixed": "#e2e2e2",
+                      "primary-container": "#5e6ad2",
+                      "tertiary-fixed": "#ffddbb",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "surface-tint": "#bdc2ff",
+                      "inverse-on-surface": "#303037",
+                      "secondary": "#c6c6c7",
+                      "on-tertiary": "#482900",
+                      "on-surface-variant": "#c6c5d5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "gutter": "12px",
+                      "container-margin": "24px",
+                      "sidebar-width": "240px",
+                      "element-gap": "8px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "display-sm": [
+                              "Inter"
+                      ],
+                      "mono-sm": [
+                              "Space Grotesk"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "mono-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body-sm text-body-sm min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="bg-[#111214] font-inter text-sm antialiased tracking-tight fixed left-0 top-0 h-screen w-64 border-r border-[#212226] flex flex-col h-full py-4 z-50">
+<div class="px-6 mb-8 mt-2 flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-primary-container flex items-center justify-center text-on-primary-container font-display-sm text-display-sm">
+                D
+            </div>
+<div>
+<div class="text-lg font-bold text-slate-100 leading-tight">DevOS</div>
+<div class="text-secondary font-label-md text-label-md">Engineering Workspace</div>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-primary-container text-on-primary-container hover:bg-inverse-primary transition-colors duration-150 rounded-DEFAULT py-2 px-4 flex items-center justify-center gap-2 font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Issue
+            </button>
+</div>
+<div class="flex-1 px-3 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[18px]">inbox</span>
+<span>Inbox</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[18px]">task_alt</span>
+<span>My Tasks</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[18px]">account_tree</span>
+<span>Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span>Views</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT bg-slate-800/50 text-slate-50 border-l-2 border-[#5E6AD2] hover:bg-[#212226] transition-colors duration-150 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+<span>Git Logs</span>
+</a>
+</div>
+<div class="mt-auto px-3 pt-4 border-t border-[#212226] space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[18px]">help_outline</span>
+<span>Help</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="bg-[#08090A]/80 backdrop-blur-md font-inter text-xs font-medium fixed top-0 right-0 w-[calc(100%-16rem)] border-b border-[#212226] z-40 flex justify-between items-center px-6 py-2 ml-64">
+<div class="flex items-center gap-6">
+<div class="relative w-64 hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-[16px]">search</span>
+<input class="w-full bg-[#111214] border border-[#212226] rounded-DEFAULT py-1.5 pl-9 pr-3 text-slate-300 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-colors text-xs placeholder:text-slate-500" placeholder="Search..." type="text"/>
+</div>
+<nav class="flex items-center gap-6">
+<a class="text-slate-500 hover:text-slate-300 hover:text-slate-200 transition-all scale-95 active:scale-90" href="#">Board</a>
+<a class="text-slate-500 hover:text-slate-300 hover:text-slate-200 transition-all scale-95 active:scale-90" href="#">List</a>
+<a class="text-slate-500 hover:text-slate-300 hover:text-slate-200 transition-all scale-95 active:scale-90" href="#">Timeline</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary-container text-on-primary-container hover:bg-inverse-primary transition-colors rounded-DEFAULT px-4 py-1.5 font-label-md text-label-md scale-95 active:scale-90">
+                Deploy
+            </button>
+<div class="flex items-center gap-2 border-l border-[#212226] pl-4">
+<button class="text-slate-500 hover:text-slate-300 transition-colors p-1 rounded-DEFAULT hover:bg-[#111214] scale-95 active:scale-90 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</button>
+<button class="text-slate-500 hover:text-slate-300 transition-colors p-1 rounded-DEFAULT hover:bg-[#111214] scale-95 active:scale-90 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="text-slate-500 hover:text-slate-300 transition-colors p-1 rounded-DEFAULT hover:bg-[#111214] scale-95 active:scale-90 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 mt-[49px] p-container-margin w-full max-w-[1200px] mx-auto pb-24">
+<!-- Commit Header Section -->
+<div class="bg-surface-container border border-outline-variant rounded-lg p-6 mb-6 grid grid-cols-1 lg:grid-cols-4 gap-6 !bg-transparent !border-0 !p-0">
+<div class="lg:col-span-3 bg-surface-container border border-outline-variant rounded-lg p-6"><div class="flex justify-between items-start mb-4"><div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full overflow-hidden bg-surface-variant flex-shrink-0 border border-outline-variant"><img alt="Author Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhOxRsd7s51jIPIQNswERwKw7YcO-BPGaVKZL_3S3qSHhL6Rcs1d4Ic89dvbzEgJa_fbNQctaRasu41jz9JG1OVwBG3_1ZPE0CUlRsr7Z5k-N3gass4G1Cs4POFjed3TAelpLsrUsodPqQ45U0BLd4Cl_TkjrNO3v-KpO8VQgrvu4Bc0VDzgMePxU8G37_kAJh0OXE6nEumIiThVFLZ03lz55gOFfuivNvMehsaXolrHuhhCepm8HJdLT2X1ysS7A3Sm5M7wf4bxg"/></div><div><h1 class="font-display-sm text-display-sm text-on-surface mb-1 flex items-center gap-2">Refactor Board component to use CSS Grid <span class="bg-surface-variant text-secondary-fixed-dim px-2 py-0.5 rounded-DEFAULT font-mono-sm text-mono-sm border border-outline-variant">main</span></h1><div class="text-secondary font-body-sm text-body-sm flex items-center gap-3"><span class="font-medium text-on-surface">Alex Mercer</span><span class="text-outline-variant">•</span><span>Committed 2 hours ago</span><span class="text-outline-variant">•</span><span class="font-mono-sm text-mono-sm text-primary">f2a4b8c</span></div></div></div><div class="flex items-center gap-2"><button class="px-3 py-1.5 border border-outline-variant text-on-surface rounded-DEFAULT hover:bg-surface-variant transition-colors font-label-md text-label-md flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">content_copy</span>Copy Hash</button><button class="px-3 py-1.5 border border-outline-variant text-on-surface rounded-DEFAULT hover:bg-surface-variant transition-colors font-label-md text-label-md flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">undo</span>Revert</button><button class="px-3 py-1.5 bg-surface-variant text-on-surface border border-outline-variant rounded-DEFAULT hover:bg-surface-bright transition-colors font-label-md text-label-md flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">open_in_new</span>View in GitHub</button></div></div><div class="mt-4 p-4 bg-surface-container-lowest border border-outline-variant rounded-DEFAULT font-body-sm text-body-sm text-on-surface-variant leading-relaxed"><p>This commit replaces the flexbox-based layout in the Board.tsx component with a more robust CSS Grid implementation. This solves the alignment issues we were seeing on wider viewports and simplifies the column sizing logic.</p><br/><p>- Removed flex-basis overrides</p><p>- Added explicit grid-template-columns for status columns</p><p>- Updated drag-and-drop droppable area bounds to match new grid cells</p><p>Fixes #452</p></div></div><div class="lg:col-span-1 bg-surface-container border border-outline-variant rounded-lg p-4 flex flex-col h-full"><h3 class="text-on-surface font-label-md text-label-md mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary">account_tree</span>Branch Context</h3><div class="space-y-3"><div class="flex flex-col gap-1"><span class="text-secondary text-[11px] uppercase tracking-wider font-bold">Current Branch</span><div class="flex items-center gap-2 text-on-surface bg-surface-variant/50 p-2 rounded-DEFAULT border border-primary/20"><span class="material-symbols-outlined text-[16px] text-primary">commit</span><span class="font-mono-sm text-mono-sm">main</span></div></div><div class="flex flex-col gap-2 pt-2 border-t border-outline-variant"><span class="text-secondary text-[11px] uppercase tracking-wider font-bold">Hierarchy</span><div class="space-y-2 font-mono-sm text-mono-sm"><div class="flex items-center gap-2 text-outline"><span class="material-symbols-outlined text-[14px]">subdirectory_arrow_right</span><span>master</span></div><div class="flex items-center gap-2 text-on-surface-variant ml-4"><span class="material-symbols-outlined text-[14px] text-primary">circle</span><span>main</span><span class="text-[10px] bg-primary/10 text-primary px-1 rounded">HEAD</span></div><div class="flex flex-col ml-8 border-l border-outline-variant pl-4 gap-2 mt-2"><div class="flex items-center gap-2 text-secondary hover:text-on-surface cursor-pointer"><span class="material-symbols-outlined text-[14px]">fork_right</span><span>feat/grid-layout</span></div><div class="flex items-center gap-2 text-secondary hover:text-on-surface cursor-pointer"><span class="material-symbols-outlined text-[14px]">fork_right</span><span>fix/mobile-view</span></div></div></div></div></div></div>
+</div>
+<!-- Diff Summary -->
+<div class="mb-4 flex items-center gap-4 text-secondary font-body-sm text-body-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">description</span>
+<span>1 changed file</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[#22c55e] font-mono-sm">+45</span>
+<span class="text-[#ef4444] font-mono-sm">-32</span>
+</div>
+</div>
+<!-- Diff View -->
+<div class="bg-surface-container border border-outline-variant rounded-lg overflow-hidden flex flex-col">
+<div class="bg-surface-container-highest px-4 py-2 border-b border-outline-variant flex justify-between items-center">
+<div class="flex items-center gap-2 font-mono-sm text-mono-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-secondary">folder</span>
+                    src/components/Board.tsx
+                </div>
+<button class="text-secondary hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<div class="overflow-x-auto bg-[#0d0e14] font-mono-sm text-[13px] leading-6 p-4">
+<table class="w-full text-left whitespace-pre">
+<tbody class="text-[#c6c5d5]">
+<tr>
+<td class="w-12 text-right pr-4 text-[#454652] select-none border-r border-[#212226]">112</td>
+<td class="w-12 text-right pr-4 text-[#454652] select-none">112</td>
+<td class="pl-4">  return (</td>
+</tr>
+<tr>
+<td class="w-12 text-right pr-4 text-[#454652] select-none border-r border-[#212226]">113</td>
+<td class="w-12 text-right pr-4 text-[#454652] select-none">113</td>
+<td class="pl-4">    &lt;DragDropContext onDragEnd={onDragEnd}&gt;</td>
+</tr>
+<tr class="bg-[#ef4444]/10 text-[#ffb4ab]">
+<td class="w-12 text-right pr-4 text-[#ef4444]/50 select-none border-r border-[#212226]">114</td>
+<td class="w-12 text-right pr-4 text-[#454652] select-none"></td>
+<td class="pl-4">-     &lt;div className="flex flex-nowrap overflow-x-auto gap-4 p-4 min-h-[calc(100vh-120px)]"&gt;</td>
+</tr>
+<tr class="bg-[#22c55e]/10 text-[#bbf7d0]">
+<td class="w-12 text-right pr-4 text-[#454652] select-none border-r border-[#212226]"></td>
+<td class="w-12 text-right pr-4 text-[#22c55e]/50 select-none">114</td>
+<td class="pl-4">+     &lt;div className="grid grid-cols-auto-fit min-w-[1200px] gap-6 p-6 min-h-[calc(100vh-120px)]"&gt;</td>
+</tr>
+<tr>
+<td class="w-12 text-right pr-4 text-[#454652] select-none border-r border-[#212226]">115</td>
+<td class="w-12 text-right pr-4 text-[#454652] select-none">115</td>
+<td class="pl-4">        {columns.map(column =&gt; (</td>
+</tr>
+<tr>
+<td class="w-12 text-right pr-4 text-[#454652] select-none border-r border-[#212226]">116</td>
+<td class="w-12 text-right pr-4 text-[#454652] select-none">116</td>
+<td class="pl-4">          &lt;Column </td>
+</tr>
+<tr class="bg-[#ef4444]/10 text-[#ffb4ab]">
+<td class="w-12 text-right pr-4 text-[#ef4444]/50 select-none border-r border-[#212226]">117</td>
+<td class="w-12 text-right pr-4 text-[#454652] select-none"></td>
+<td class="pl-4">-           key={column.id} </td>
+</tr>
+<tr class="bg-[#ef4444]/10 text-[#ffb4ab]">
+<td class="w-12 text-right pr-4 text-[#ef4444]/50 select-none border-r border-[#212226]">118</td>
+<td class="w-12 text-right pr-4 text-[#454652] select-none"></td>
+<td class="pl-4">-           className="flex-shrink-0 w-80 flex flex-col bg-surface-container rounded-lg"</td>
+</tr>
+<tr class="bg-[#22c55e]/10 text-[#bbf7d0]">
+<td class="w-12 text-right pr-4 text-[#454652] select-none border-r border-[#212226]"></td>
+<td class="w-12 text-right pr-4 text-[#22c55e]/50 select-none">117</td>
+<td class="pl-4">+           key={column.id}</td>
+</tr>
+<tr class="bg-[#22c55e]/10 text-[#bbf7d0]">
+<td class="w-12 text-right pr-4 text-[#454652] select-none border-r border-[#212226]"></td>
+<td class="w-12 text-right pr-4 text-[#22c55e]/50 select-none">118</td>
+<td class="pl-4">+           className="flex flex-col bg-surface-container rounded-lg border border-outline-variant shadow-sm h-full"</td>
+</tr>
+<tr>
+<td class="w-12 text-right pr-4 text-[#454652] select-none border-r border-[#212226]">119</td>
+<td class="w-12 text-right pr-4 text-[#454652] select-none">119</td>
+<td class="pl-4">            column={column} </td>
+</tr>
+<tr>
+<td class="w-12 text-right pr-4 text-[#454652] select-none border-r border-[#212226]">120</td>
+<td class="w-12 text-right pr-4 text-[#454652] select-none">120</td>
+<td class="pl-4">            tasks={column.taskIds.map(taskId =&gt; tasks[taskId])} </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</body></html>

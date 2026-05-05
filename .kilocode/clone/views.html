@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevOS - Views</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#34343b",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#c6c5d5",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "secondary-fixed": "#e2e2e2",
+                        "inverse-surface": "#e4e1eb",
+                        "inverse-on-surface": "#303037",
+                        "primary-container": "#5e6ad2",
+                        "surface-container-high": "#292930",
+                        "on-error": "#690005",
+                        "primary-fixed": "#dfe0ff",
+                        "surface-bright": "#393840",
+                        "on-tertiary": "#482900",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "outline-variant": "#454652",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "surface-container-low": "#1b1b22",
+                        "on-tertiary-fixed": "#2b1700",
+                        "inverse-primary": "#4854bb",
+                        "tertiary-container": "#a56500",
+                        "background": "#121319",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "tertiary-fixed-dim": "#ffb867",
+                        "on-primary": "#121f8b",
+                        "on-surface": "#e4e1eb",
+                        "surface-container-lowest": "#0d0e14",
+                        "surface": "#121319",
+                        "primary": "#bdc2ff",
+                        "secondary": "#c6c6c7",
+                        "surface-container-highest": "#34343b",
+                        "on-primary-fixed-variant": "#2e3aa2",
+                        "secondary-container": "#454747",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-secondary-container": "#b4b5b5",
+                        "on-error-container": "#ffdad6",
+                        "surface-container": "#1f1f26",
+                        "on-primary-container": "#fdfaff",
+                        "on-secondary": "#2f3131",
+                        "surface-tint": "#bdc2ff",
+                        "surface-dim": "#121319",
+                        "outline": "#908f9e",
+                        "tertiary": "#ffb867",
+                        "on-primary-fixed": "#000965",
+                        "tertiary-fixed": "#ffddbb",
+                        "on-tertiary-container": "#fffaf8",
+                        "on-background": "#e4e1eb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "sidebar-width": "240px",
+                        "container-margin": "24px",
+                        "gutter": "12px",
+                        "element-gap": "8px"
+                    },
+                    "fontFamily": {
+                        "display-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "mono-sm": ["Space Grotesk"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "mono-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #08090A; color: #e4e1eb; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden font-display-sm text-display-sm antialiased">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-screen w-64 border-r border-[#212226] bg-[#111214] font-inter text-sm antialiased tracking-tight z-50">
+<div class="flex flex-col h-full py-4">
+<!-- Header -->
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="h-8 w-8 rounded-DEFAULT bg-primary-container flex items-center justify-center text-on-primary-container font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<div>
+<h1 class="text-lg font-bold text-slate-100">DevOS</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Engineering Workspace</p>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-4 mb-6">
+<button class="w-full bg-primary-container text-on-primary-container hover:bg-inverse-primary transition-colors duration-150 py-2 rounded-DEFAULT font-label-md text-label-md flex items-center justify-center gap-2 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                    New Issue
+                </button>
+</div>
+<!-- Main Tabs -->
+<ul class="flex-1 px-3 space-y-1">
+<li>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 flex items-center gap-3 px-3 py-2 rounded-DEFAULT cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">inbox</span>
+<span class="font-body-md text-body-md">Inbox</span>
+</a>
+</li>
+<li>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 flex items-center gap-3 px-3 py-2 rounded-DEFAULT cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">task_alt</span>
+<span class="font-body-md text-body-md">My Tasks</span>
+</a>
+</li>
+<li>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 flex items-center gap-3 px-3 py-2 rounded-DEFAULT cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">account_tree</span>
+<span class="font-body-md text-body-md">Projects</span>
+</a>
+</li>
+<li>
+<a class="bg-slate-800/50 text-slate-50 border-l-2 border-[#5E6AD2] hover:bg-[#212226] transition-colors duration-150 flex items-center gap-3 px-3 py-2 rounded-DEFAULT cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+<span class="font-body-md text-body-md">Views</span>
+</a>
+</li>
+<li>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 flex items-center gap-3 px-3 py-2 rounded-DEFAULT cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">terminal</span>
+<span class="font-body-md text-body-md">Git Logs</span>
+</a>
+</li>
+</ul>
+<!-- Footer Tabs -->
+<ul class="px-3 space-y-1 mt-auto">
+<li>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 flex items-center gap-3 px-3 py-2 rounded-DEFAULT cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</li>
+<li>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-[#212226] transition-colors duration-150 flex items-center gap-3 px-3 py-2 rounded-DEFAULT cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+<span class="font-body-md text-body-md">Help</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 flex flex-col relative h-full">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] border-b border-[#212226] bg-[#08090A]/80 backdrop-blur-md z-40">
+<div class="flex justify-between items-center px-6 py-2">
+<!-- Search on Left -->
+<div class="flex items-center">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full bg-[#111214] border border-[#212226] rounded-DEFAULT py-1.5 pl-9 pr-3 text-on-surface font-body-sm text-body-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all placeholder:text-on-surface-variant/50" placeholder="Search Views..." type="text"/>
+</div>
+</div>
+<!-- Navigation Links Center -->
+<nav class="flex items-center gap-6">
+<a class="font-inter text-xs font-medium text-slate-500 hover:text-slate-300 hover:text-slate-200 transition-all scale-95 active:scale-90" href="#">Board</a>
+<a class="font-inter text-xs font-medium text-slate-500 hover:text-slate-300 hover:text-slate-200 transition-all scale-95 active:scale-90" href="#">List</a>
+<a class="font-inter text-xs font-medium text-slate-500 hover:text-slate-300 hover:text-slate-200 transition-all scale-95 active:scale-90" href="#">Timeline</a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="font-inter text-xs font-medium text-slate-500 hover:text-slate-300 hover:text-slate-200 transition-all scale-95 active:scale-90 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</button>
+<button class="font-inter text-xs font-medium text-slate-500 hover:text-slate-300 hover:text-slate-200 transition-all scale-95 active:scale-90 flex items-center justify-center relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary-container rounded-full border border-[#08090A]"></span>
+</button>
+<button class="font-inter text-xs font-medium text-slate-500 hover:text-slate-300 hover:text-slate-200 transition-all scale-95 active:scale-90 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+<div class="h-4 w-[1px] bg-[#212226] mx-1"></div>
+<button class="bg-primary-container text-on-primary-container hover:bg-inverse-primary px-3 py-1.5 rounded-DEFAULT font-label-md text-label-md transition-colors duration-150 scale-95 active:scale-90">Deploy</button>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<div class="flex-1 overflow-y-auto mt-14 p-container-margin">
+<!-- Page Header -->
+<div class="flex items-end justify-between mb-8">
+<div>
+<h2 class="font-display-sm text-display-sm text-on-surface mb-1">Views</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your saved filters and custom perspectives.</p>
+</div>
+<button class="bg-primary-container text-on-primary-container hover:bg-inverse-primary px-4 py-2 rounded-DEFAULT font-label-md text-label-md flex items-center gap-2 transition-colors duration-150">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Create View
+                </button>
+</div>
+<!-- Hero Banner / Featured View (Using Available Image) -->
+<div class="mb-8 rounded-lg border border-[#212226] overflow-hidden relative h-48 bg-surface-container-low group cursor-pointer">
+<img alt="Hero Image" class="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-opacity duration-300" data-alt="A striking digital installation art piece featuring glowing, generative geometric shapes suspended in a vast, minimalist gallery space. The room is illuminated by high-key, soft white lighting that creates a bright, modern light-mode aesthetic. The artwork relies on a sophisticated palette of deep blacks and pristine whites, punctuated by intense accents of vibrant red. The mood is serene yet technologically advanced." src="https://lh3.googleusercontent.com/aida/ADBb0uhOxRsd7s51jIPIQNswERwKw7YcO-BPGaVKZL_3S3qSHhL6Rcs1d4Ic89dvbzEgJa_fbNQctaRasu41jz9JG1OVwBG3_1ZPE0CUlRsr7Z5k-N3gass4G1Cs4POFjed3TAelpLsrUsodPqQ45U0BLd4Cl_TkjrNO3v-KpO8VQgrvu4Bc0VDzgMePxU8G37_kAJh0OXE6nEumIiThVFLZ03lz55gOFfuivNvMehsaXolrHuhhCepm8HJdLT2X1ysS7A3Sm5M7wf4bxg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#08090A] via-[#08090A]/60 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full flex items-end justify-between">
+<div>
+<span class="inline-block px-2 py-0.5 rounded-DEFAULT bg-primary-container/20 text-primary border border-primary-container/30 font-mono-sm text-mono-sm mb-2">Featured Perspective</span>
+<h3 class="font-display-sm text-display-sm text-white mb-1">Global System Health Overview</h3>
+<p class="font-body-sm text-body-sm text-slate-300">A comprehensive dashboard of all active microservices and critical alerts.</p>
+</div>
+<button class="bg-[#111214]/80 backdrop-blur border border-[#212226] text-on-surface hover:text-white hover:border-slate-500 px-3 py-1.5 rounded-DEFAULT font-label-md text-label-md flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+                         Open Dashboard
+                     </button>
+</div>
+</div>
+<!-- Saved Views Section -->
+<div class="mb-10">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-body-md text-body-md text-on-surface font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary-container">bookmark</span>
+                        Saved Views
+                    </h3>
+<div class="flex items-center gap-2">
+<button class="p-1 text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">grid_view</span></button>
+<button class="p-1 text-on-surface-variant/50 hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">view_list</span></button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+<!-- Card 1 -->
+<div class="bg-[#111214] border border-[#212226] rounded-lg p-4 hover:border-outline-variant transition-colors group cursor-pointer flex flex-col h-full relative">
+<div class="flex justify-between items-start mb-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container-high flex items-center justify-center text-primary-container border border-[#212226]">
+<span class="material-symbols-outlined text-[18px]">bug_report</span>
+</div>
+<button class="text-primary-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">keep</span>
+</button>
+</div>
+<h4 class="font-body-md text-body-md text-on-surface font-medium mb-1">Critical Bugs</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 flex-1 line-clamp-2">P0 and P1 issues across all active repositories requiring immediate attention.</p>
+<div class="flex items-center justify-between mt-auto pt-3 border-t border-[#212226]">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center text-[10px] text-on-surface">ME</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Updated 2h ago</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-[#111214] border border-[#212226] rounded-lg p-4 hover:border-outline-variant transition-colors group cursor-pointer flex flex-col h-full relative">
+<div class="flex justify-between items-start mb-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container-high flex items-center justify-center text-secondary border border-[#212226]">
+<span class="material-symbols-outlined text-[18px]">assignment_ind</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[20px]">keep</span>
+</button>
+</div>
+<h4 class="font-body-md text-body-md text-on-surface font-medium mb-1">My Active Issues</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 flex-1 line-clamp-2">Tasks assigned to me currently in 'In Progress' or 'Review' states.</p>
+<div class="flex items-center justify-between mt-auto pt-3 border-t border-[#212226]">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center text-[10px] text-on-surface">ME</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Updated 1d ago</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-[#111214] border border-[#212226] rounded-lg p-4 hover:border-outline-variant transition-colors group cursor-pointer flex flex-col h-full relative">
+<div class="flex justify-between items-start mb-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container-high flex items-center justify-center text-tertiary-fixed-dim border border-[#212226]">
+<span class="material-symbols-outlined text-[18px]">sprint</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[20px]">keep</span>
+</button>
+</div>
+<h4 class="font-body-md text-body-md text-on-surface font-medium mb-1">Team Sprint v2.4</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 flex-1 line-clamp-2">Current active sprint board for the core platform engineering team.</p>
+<div class="flex items-center justify-between mt-auto pt-3 border-t border-[#212226]">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center text-[10px] text-on-surface">ME</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Updated 3d ago</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-[#111214] border border-[#212226] rounded-lg p-4 hover:border-outline-variant transition-colors group cursor-pointer flex flex-col h-full relative">
+<div class="flex justify-between items-start mb-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container-high flex items-center justify-center text-on-surface-variant border border-[#212226]">
+<span class="material-symbols-outlined text-[18px]">description</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[20px]">keep</span>
+</button>
+</div>
+<h4 class="font-body-md text-body-md text-on-surface font-medium mb-1">Documentation Tasks</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 flex-1 line-clamp-2">Backlog of API documentation updates and technical debt related to guides.</p>
+<div class="flex items-center justify-between mt-auto pt-3 border-t border-[#212226]">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center text-[10px] text-on-surface">ME</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Updated 1w ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Shared Views Section (Bento Grid Style) -->
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-body-md text-body-md text-on-surface font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">share</span>
+                        Shared Views
+                    </h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Shared View 1 -->
+<div class="col-span-1 md:col-span-2 bg-[#111214] border border-[#212226] rounded-lg p-5 hover:bg-surface-container-low transition-colors flex items-center gap-4">
+<div class="w-10 h-10 rounded-DEFAULT bg-[#212226] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px] text-primary-container">monitoring</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-body-md text-body-md text-on-surface font-medium truncate">Q3 OKR Tracking - Engineering</h4>
+<span class="px-1.5 py-0.5 rounded text-[10px] bg-secondary-container/30 text-secondary-fixed border border-[#454747]/50">Company</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">High-level overview of engineering objectives and key results for Q3.</p>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-[#212226] flex-shrink-0">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-blue-900 border border-[#111214] flex items-center justify-center text-[10px] z-20">SJ</div>
+<div class="w-6 h-6 rounded-full bg-emerald-900 border border-[#111214] flex items-center justify-center text-[10px] z-10">AK</div>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Created by Sarah J.</span>
+</div>
+</div>
+<!-- Shared View 2 -->
+<div class="col-span-1 bg-[#111214] border border-[#212226] rounded-lg p-5 hover:bg-surface-container-low transition-colors flex flex-col justify-center">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 rounded-DEFAULT bg-[#212226] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[16px] text-error">security</span>
+</div>
+<h4 class="font-body-md text-body-md text-on-surface font-medium truncate">SecOps Triage</h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3 line-clamp-1">Incoming security vulnerabilities.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">By Sec Team</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] bg-[#212226] text-on-surface-variant">Team</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
