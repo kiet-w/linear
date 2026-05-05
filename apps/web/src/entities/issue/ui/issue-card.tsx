@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Issue } from "../model/types";
 
 interface IssueCardProps {
@@ -30,10 +31,12 @@ export function IssueCard({ issue, isDragging, isActive }: IssueCardProps) {
           {issue.identifier ?? issue.id.slice(0, 6).toUpperCase()}
         </span>
         {issue.assignee_avatar ? (
-          <img
+          <Image
             src={issue.assignee_avatar}
             alt="Assignee"
-            className="w-4 h-4 rounded-full"
+            width={16}
+            height={16}
+            className="rounded-full"
           />
         ) : issue.assignee_initials ? (
           <div className="w-4 h-4 rounded-full bg-[#5e6ad2] flex items-center justify-center text-[8px] font-bold text-white">
