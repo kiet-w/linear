@@ -17,7 +17,7 @@
 2. **Linear State - BẮT BUỘC:** 
    - Nhận ticket ở cột **Planned**, lập tức chuyển sang **In Progress**.
    - TUYỆT ĐỐI CHỈ CODE những gì có trong plan của ticket đó, không code lan man.
-   - Khi hoàn thành (đã commit và push), chuyển ticket sang **In Review** và **DỪNG LẠI (STOP)**, đợi review code. Không tự ý merge.
+   - Khi hoàn thành (đã commit và PUSH lên nhánh có tên trùng với tên ticket), chuyển ticket sang **In Review** và **DỪNG LẠI (STOP)**, đợi review code. Không tự ý merge.
    - Nếu có lỗi, ticket bị kéo sang **Debug**, AI chuyển lại sang **In Progress** để fix. Fix xong lại đẩy qua **In Review** và **STOP**.
 3. **Checklist:** Khi làm xong 1 bước, AI tự động tick `[x]` vào markdown này.
 4. **Commit:** Commit ngay sau mỗi Task hoàn thành. Nhớ thêm prefix `rtk` cho mọi câu lệnh shell (Antigravity Rule).

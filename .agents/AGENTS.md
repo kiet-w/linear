@@ -84,6 +84,6 @@ All AI coding agents MUST adhere to the following project management workflow us
 1. **Pick up from Planned:** Only pick up tasks that are in the "Planned" state.
 2. **Move to In Progress:** Before writing any code, move the ticket status to "In Progress".
 3. **Execute the Plan:** Strictly execute ONLY the tasks outlined in the ticket's plan. Do not perform unauthorized refactoring.
-4. **Move to In Review & STOP:** Once the tasks are implemented, verified, committed, and pushed, move the ticket status to "In Review". **You MUST STOP execution here.** Do not attempt to merge or close the ticket. Wait for code review.
+4. **Move to In Review & STOP:** Once the tasks are implemented, verified, committed, and PUSHED to a branch named after the ticket, move the ticket status to "In Review". **You MUST STOP execution here.** Do not attempt to merge or close the ticket. Wait for code review.
 5. **Handling Debug/Rejections:** If a ticket is moved to a "debug" state due to review failures, fix the identified issues. Once fixed, move it back to "In Progress" while working, and then "In Review" when done.
 6. **Cross-Agent Sync:** When a ticket moves to "In Review", the current AI must broadcast/update so all AI agents in the project know the ticket is waiting for review and should not be touched until human input or a move to 'debug'.
